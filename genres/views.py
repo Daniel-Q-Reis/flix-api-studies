@@ -33,10 +33,6 @@ class GenreRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
 #         )
     
 
-
-
-
-
 # @csrf_exempt
 # def genre_detail_view(request, pk):
 #     genre = get_object_or_404(Genre, pk=pk)
