@@ -18,6 +18,6 @@ urlpatterns = [
     path('movies/', MovieCreateListView.as_view(), name='movie-create-list'),
     path('movies/<int:pk>', MovieRetrieveUpdateDestroyView.as_view(), name='movie-detail-view'),
 
-    path('reviews', ReviewCreateListView.as_view(), name='review-create-list'),
+    path('reviews/', ReviewCreateListView.as_view(), name='review-create-list'),
     path('reviews/<int:pk>/', ReviewRetrieveUpdateDestroyView.as_view(), name='review-detail-view'),
 ]
