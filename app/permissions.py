@@ -3,10 +3,12 @@ from rest_framework import permissions
 
 class GlobalDefaultPermission(permissions.BasePermission):
 
-    #What needs to be decovered? Is how to get this string:
-    #f'{app_name}.{action_name}_{model_name}  -> ex: request.user.has_perm('genres.view_genre')
+    # What needs to be decovered? Is how to get this string:
+    # f'{app_name}.{action_name}_{model_name}  -> ex: request.user.has_perm('genres.view_genre')
     def has_permission(self, request, view):
-        model_permission_codename = self.__get_model_permission_codename(request.method, view)
+        model_permission_codename = self.__get_model_permission_codename(
+            request.method, view
+        )
 
         if not model_permission_codename:
             return False
@@ -24,12 +26,12 @@ class GlobalDefaultPermission(permissions.BasePermission):
 
     def __get_action_suffix(self, method):
         method_actions = {
-            'GET': 'view',
-            'POST': 'add',
-            'PUT': 'change',
-            'PATCH': 'change',
-            'DELETE': 'delete',
-            'OPTIONS': 'view',
-            'HEAD': 'view',
+            "GET": "view",
+            "POST": "add",
+            "PUT": "change",
+            "PATCH": "change",
+            "DELETE": "delete",
+            "OPTIONS": "view",
+            "HEAD": "view",
         }
-        return method_actions.get(method, '')
+        return method_actions.get(method, "")

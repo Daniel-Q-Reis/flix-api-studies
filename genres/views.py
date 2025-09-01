@@ -2,21 +2,28 @@
 # from django.http import JsonResponse
 # from django.views.decorators.csrf import csrf_exempt
 # from django.shortcuts import get_object_or_404
-from rest_framework.permissions import IsAuthenticated
 from rest_framework import generics
+from rest_framework.permissions import IsAuthenticated
+
 from app.permissions import GlobalDefaultPermission
 from genres.models import Genre
 from genres.serializers import GenreSerializer
 
 
 class GenreCreateListView(generics.ListCreateAPIView):
-    permission_classes = (IsAuthenticated, GlobalDefaultPermission,)
+    permission_classes = (
+        IsAuthenticated,
+        GlobalDefaultPermission,
+    )
     queryset = Genre.objects.all()
-    serializer_class = GenreSerializer #we have created at genres/serializers
+    serializer_class = GenreSerializer  # we have created at genres/serializers
 
 
 class GenreRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
-    permission_classes = (IsAuthenticated, GlobalDefaultPermission,)
+    permission_classes = (
+        IsAuthenticated,
+        GlobalDefaultPermission,
+    )
     queryset = Genre.objects.all()
     serializer_class = GenreSerializer
 
@@ -36,7 +43,7 @@ class GenreRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
 #             {'id': new_genre.id, 'name': new_genre.name},
 #             status = 201,
 #         )
-    
+
 
 # @csrf_exempt
 # def genre_detail_view(request, pk):
@@ -45,15 +52,15 @@ class GenreRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
 #     if request.method == 'GET':
 #         data = {'id': genre.id, 'name': genre.name}
 #         return JsonResponse(data)
-    
+
 #     elif request.method == 'PUT':
 #         data = json.loads(request.body.decode('utf-8'))
 #         genre.name = data['name']
-#         genre.save() 
+#         genre.save()
 #         return JsonResponse(
 #             {'id': genre.id, 'name': genre.name},
 #         )
-    
+
 #     elif request.method == 'DELETE':
 #         genre.delete()
 #         return JsonResponse(
